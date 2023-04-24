@@ -6,6 +6,8 @@ const db = require('../util/database');
 
 const bcrypt = require('bcryptjs');
 
+const jwt = require('jsonwebtoken');
+
 exports.signup = async (req, res, next) => {
     const errors = validationResult(req)
 
@@ -76,7 +78,7 @@ exports.login = async (req, res, next) => {
         { expiresIn: "1h" }
       );
   
-      res.status(200).json({ token, userId: storedUser.id });
+      res.status(200).json({ token, userId: storedUser.id, name: storedUser.name });
 
 
     } catch (err) {
