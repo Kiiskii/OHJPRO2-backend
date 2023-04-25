@@ -11,11 +11,11 @@ router.get('/', favoritesController.fetchAll);
 router.post(
     '/',
     [
-        body('userid'),
-        body('nimi'),
-        body('kuvaus'),
-        body('homesite'),
-        body('osoite')
+        body('userid').notEmpty(),
+        body('nimi').notEmpty(),
+        body('kuvaus').notEmpty(),
+        body('homesite').notEmpty(),
+        body('osoite').notEmpty()
     ],
     favoritesController.favoritesPost
 );

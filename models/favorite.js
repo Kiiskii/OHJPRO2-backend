@@ -10,7 +10,7 @@ module.exports = class Favorites {
     }
 
     static fetchAll() {
-        return db.query('SELECT * FROM favorites')
+        return db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
     }
 
     static async save(favorites) {
@@ -21,6 +21,6 @@ module.exports = class Favorites {
     }
 
     static delete(id) {
-        return db.query('DELETE FROM favorites WHERE id = $', [id]);
+        return db.query('DELETE FROM favorites WHERE id = $1', [id]);
     }
 }

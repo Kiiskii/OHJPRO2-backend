@@ -6,18 +6,17 @@ const db = require('../util/database');
 
 exports.fetchAll = async (req, res, next) => {
     try {
+        const { rows } = await db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
 
-        const [allFavorites] = await Favorites.fetchAll()
-        res.status(200).json(allFavorites);
-
-    } catch(err) {
-
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
+      res.status(200).json(rows)
+    } catch (err) {
+      console.error(err)
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
     }
-}
+  }
 
 exports.favoritesPost = async (req, res, next) => {
     const errors = validationResult(req)
