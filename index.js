@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth');
 
+const favoritesRoutes = require('./routes/favorites')
+
 const errorController = require('./controllers/error');
 
 const app = express();
@@ -27,6 +29,8 @@ pool.connect((err, client, done) => {
 })
 
 app.use('/auth', authRoutes);
+
+app.use('/favorites', favoritesRoutes);
 
 app.use(errorController.get404);
 
