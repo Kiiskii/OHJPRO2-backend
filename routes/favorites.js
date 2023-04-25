@@ -11,7 +11,7 @@ router.get('/', favoritesController.fetchAll);
 router.post(
     '/',
     [
-        body('userId'),
+        body('userid'),
         body('nimi'),
         body('kuvaus'),
         body('homesite'),

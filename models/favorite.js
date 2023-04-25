@@ -1,8 +1,8 @@
 const db = require('../util/database');
 
 module.exports = class Favorites {
-    constructor(userId, nimi, kuvaus, homesite, osoite) {
-        this.userId = userId;
+    constructor(userid, nimi, kuvaus, homesite, osoite) {
+        this.userid = userid;
         this.nimi = nimi;
         this.kuvaus = kuvaus;
         this.homesite = homesite;
@@ -15,8 +15,8 @@ module.exports = class Favorites {
 
     static async save(favorites) {
         return db.query(
-            'INSERT INTO favorites (userId, nimi, kuvaus, homesite, osoite) VALUES ($1, $2, $3, $4, $5)',
-            [user.userId, user.nimi, user.kuvaus, user.homesite, user.osoite]
+            'INSERT INTO favorites (userid, nimi, kuvaus, homesite, osoite) VALUES ($1, $2, $3, $4, $5)',
+            [favorites.userid, favorites.nimi, favorites.kuvaus, favorites.homesite, favorites.osoite]
         );
     }
 
