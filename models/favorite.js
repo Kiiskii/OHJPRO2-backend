@@ -6,17 +6,17 @@ module.exports = class Favorites {
         this.favid = favid;
     }
 
-    // static fetchAll() {
-    //     return db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
-    // }
+    static fetchAll() {
+        return db.query('SELECT favid FROM favorites')
+    }
 
     static async save(favorites) {
         const result = await db.query(
             'INSERT INTO favorites (userid, favid) VALUES ($1, $2)',
             [favorites.userid, favorites.favid]
         );
-        console.log(`favid: ${favorites.userid}`)
-        console.log(`favid: ${favorites.favid}`)
+        // console.log(`favid: ${favorites.userid}`)
+        // console.log(`favid: ${favorites.favid}`)
         return result;
     }
 
