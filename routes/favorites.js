@@ -4,7 +4,7 @@ const { body } = require('express-validator');
 
 const favoritesController = require('../controllers/favorites')
 
-const auth = require('../middleware/auth');
+// const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -13,12 +13,12 @@ const router = express.Router();
 router.post(
     '/',
     [
-        auth,
+        // auth,
         body('user_id').notEmpty(),
         body('favorites_id').notEmpty()
     ],
     favoritesController.favoritesPost
 );
-router.delete('/:id', auth, favoritesController.deleteFavorites);
+router.delete('/:id', favoritesController.deleteFavorites);
 
 module.exports = router;
