@@ -1,22 +1,19 @@
 const db = require('../util/database');
 
 module.exports = class Favorites {
-    constructor(userid, nimi, kuvaus, homesite, osoite) {
-        this.userid = userid;
-        this.nimi = nimi;
-        this.kuvaus = kuvaus;
-        this.homesite = homesite;
-        this.osoite = osoite;
+    constructor(user_id, re) {
+        this.user_id = user_id;
+        this.favorites_id = favorites_id
     }
 
-    static fetchAll() {
-        return db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
-    }
+    // static fetchAll() {
+    //     return db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
+    // }
 
     static async save(favorites) {
         return db.query(
-            'INSERT INTO favorites (userid, nimi, kuvaus, homesite, osoite) VALUES ($1, $2, $3, $4, $5)',
-            [favorites.userid, favorites.nimi, favorites.kuvaus, favorites.homesite, favorites.osoite]
+            'INSERT INTO favorites (user_id, favorites_id) VALUES ($1, $2)',
+            [favorites.user_id, favorites.favorites_id]
         );
     }
 

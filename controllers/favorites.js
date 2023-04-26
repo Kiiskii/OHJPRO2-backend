@@ -4,19 +4,18 @@ const Favorites = require('../models/favorite');
 
 const db = require('../util/database');
 
-exports.fetchAll = async (req, res, next) => {
-    try {
-        const { rows } = await db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
-
-      res.status(200).json(rows)
-    } catch (err) {
-      console.error(err)
-      if (!err.statusCode) {
-        err.statusCode = 500
-      }
-      next(err)
-    }
-  }
+// exports.fetchAll = async (req, res, next) => {
+//     try {
+//         const { rows } = await db.query('SELECT userid, nimi, kuvaus, homesite, osoite FROM favorites')
+//         res.status(200).json(rows)
+//     } catch (err) {
+//       console.error(err)
+//       if (!err.statusCode) {
+//         err.statusCode = 500
+//       }
+//       next(err)
+//     }
+//   }
 
 exports.favoritesPost = async (req, res, next) => {
     const errors = validationResult(req)
@@ -25,16 +24,13 @@ exports.favoritesPost = async (req, res, next) => {
         return res.status(422).json({ errors: errors.array() });
     }
 
-    const { userid, nimi, kuvaus, homesite, osoite } = req.body;
+    const { user_id, favorites_id } = req.body;
 
     try {
 
         const favoritesDetails = {
-            userid: userid,
-            nimi: nimi,
-            kuvaus: kuvaus,
-            homesite: homesite,
-            osoite: osoite
+            userid: user_id,
+            nimi: favorites_id
         }
 
         const result = await Favorites.save(favoritesDetails)
