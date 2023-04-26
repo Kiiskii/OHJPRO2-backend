@@ -1,9 +1,9 @@
 const db = require('../util/database');
 
 module.exports = class Favorites {
-    constructor(user_id, favorites_id) {
-        this.user_id = user_id;
-        this.favorites_id = favorites_id
+    constructor(userid, favid) {
+        this.userid = userid;
+        this.favid = favid;
     }
 
     // static fetchAll() {
@@ -11,10 +11,13 @@ module.exports = class Favorites {
     // }
 
     static async save(favorites) {
-        return db.query(
-            'INSERT INTO favorites (user_id, favorites_id) VALUES ($1, $2)',
-            [favorites.user_id, favorites.favorites_id]
+        const result = await db.query(
+            'INSERT INTO favorites (userid, favid) VALUES ($1, $2)',
+            [favorites.userid, favorites.favid]
         );
+        console.log(`favid: ${favorites.userid}`)
+        console.log(`favid: ${favorites.favid}`)
+        return result;
     }
 
     static delete(id) {

@@ -24,13 +24,13 @@ exports.favoritesPost = async (req, res, next) => {
         return res.status(422).json({ errors: errors.array() });
     }
 
-    const { user_id, favorites_id } = req.body;
+    const { userid, favid } = req.body;
 
     try {
 
         const favoritesDetails = {
-            userid: user_id,
-            nimi: favorites_id
+            userid: userid,
+            favid: favid
         }
 
         const result = await Favorites.save(favoritesDetails)

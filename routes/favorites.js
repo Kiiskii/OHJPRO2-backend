@@ -14,8 +14,8 @@ router.post(
     '/',
     [
         // auth,
-        body('user_id').notEmpty(),
-        body('favorites_id').notEmpty()
+        body('userid').notEmpty(),
+        body('favid').notEmpty()
     ],
     favoritesController.favoritesPost
 );
