@@ -1,7 +1,7 @@
 const db = require('../util/database');
 
 module.exports = class Favorites {
-    constructor(user_id, re) {
+    constructor(user_id, favorites_id) {
         this.user_id = user_id;
         this.favorites_id = favorites_id
     }
