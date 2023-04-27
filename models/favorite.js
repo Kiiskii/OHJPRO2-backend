@@ -7,7 +7,7 @@ module.exports = class Favorites {
     }
 
     static fetchAll() {
-        return db.query('SELECT favid FROM favorites WHERE user_id = $1', [userId])
+        return db.query('SELECT favid FROM favorites WHERE userid = $1', [userid])
     }
 
     static async save(favorites) {
