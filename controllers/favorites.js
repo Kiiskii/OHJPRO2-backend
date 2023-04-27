@@ -6,7 +6,8 @@ const db = require('../util/database');
 
 exports.fetchAll = async (req, res, next) => {
     try {
-        const { rows } = await db.query('SELECT favid FROM favorites')
+        const userId = req.params.userId;
+        const { rows } = await db.query('SELECT favid FROM favorites WHERE user_id = $1', [userId])
         res.status(200).json(rows)
     } catch (err) {
       console.error(err)
