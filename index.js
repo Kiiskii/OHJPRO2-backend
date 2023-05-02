@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
-const authRoutes = require('./routes/auth');
+const authRoutes = require("./src/routes/auth");
 
-const favoritesRoutes = require('./routes/favorites')
+const favoritesRoutes = require("./src/routes/favorites");
 
-const errorController = require('./controllers/error');
+const errorController = require("./src/controllers/error");
 
 const app = express();
 
@@ -15,22 +15,22 @@ const ports = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-})
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
-const pool = require('./util/database');
+const pool = require("./src/util/database");
 
 pool.connect((err, client, done) => {
-    if (err) throw err;
-    console.log('Connected to database');
-})
+  if (err) throw err;
+  console.log("Connected to database");
+});
 
-app.use('/auth', authRoutes);
+app.use("/auth", authRoutes);
 
-app.use('/favorites', favoritesRoutes);
+app.use("/favorites", favoritesRoutes);
 
 app.use(errorController.get404);
 
