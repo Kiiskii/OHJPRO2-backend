@@ -6,17 +6,17 @@ const db = require('../util/database');
 
 exports.fetchAll = async (req, res, next) => {
     try {
-        const userid = req.params.userid;
-        const { rows } = await db.query('SELECT favid FROM favorites WHERE userid = $1', [userid])
-        res.status(200).json(rows)
+      const userid = req.params.userid;
+      const rows = await Favorites.fetchAll(userid);
+      res.status(200).json(rows);
     } catch (err) {
-      console.error(err)
+      console.error(err);
       if (!err.statusCode) {
-        err.statusCode = 500
+        err.statusCode = 500;
       }
-      next(err)
+      next(err);
     }
-  }
+  };
 
 exports.favoritesPost = async (req, res, next) => {
     const errors = validationResult(req)

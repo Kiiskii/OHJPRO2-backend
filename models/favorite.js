@@ -6,9 +6,11 @@ module.exports = class Favorites {
         this.favid = favid;
     }
 
-    static fetchAll() {
-        return db.query('SELECT favid FROM favorites WHERE userid = $1', [userid])
-    }
+    static fetchAll(userid) {
+        return db.query('SELECT * FROM favorites WHERE userid = $1', [userid])
+          .then(result => result.rows.map(row => row.favid));
+      }
+
 
     static async save(favorites) {
         try {

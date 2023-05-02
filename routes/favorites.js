@@ -8,7 +8,7 @@ const favoritesController = require('../controllers/favorites')
 
 const router = express.Router();
 
-router.get('/', favoritesController.fetchAll);
+router.get('/:userid', favoritesController.fetchAll);
 
 router.post(
     '/',
