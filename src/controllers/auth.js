@@ -10,7 +10,9 @@ const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 
-const secretKey = process.env.JWT_SECRET;
+const secretKey = "temporary_secret_key"
+// process.env.JWT_SECRET
+;
 
 
 exports.signup = async (req, res, next) => {
@@ -50,7 +52,7 @@ exports.login = async (req, res, next) => {
   
     try {
       const user = await User.find(email);
-        // console.log(user)
+        //console.log(user)
         const storedUser = user.rows[0];
         console.log(storedUser);
 
@@ -89,7 +91,7 @@ exports.login = async (req, res, next) => {
     } catch (err) {
       if (!err.statusCode) {
         err.statusCode = 500;
-        console.log("Virhe controller/auth")
+        console.log("Virhe controller/auth login")
       }
       next(err);
     }
