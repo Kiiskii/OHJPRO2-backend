@@ -14,11 +14,19 @@ module.exports = class Favorites {
 
     static async save(favorites) {
         try {
-            await db.query(
+            const { rows } = await db.query('SELECT COUNT(*) FROM favorites WHERE favid = $1', [favorites.favid]);
+            const favCount = rows[0].count;
+
+            if (favCount > 0) {
+                throw new Error('favid already exists');
+            } else {
+                const result = await db.query(
                     'INSERT INTO favorites (userid, favid) VALUES ($1, $2)',
                     [favorites.userid, favorites.favid],
                     console.log('Favorite added to db!')
-                )
+                );
+                return result;
+            }
          } catch(err) {
             console.error(err);
             throw err;
@@ -34,6 +42,5 @@ module.exports = class Favorites {
             throw err;
         }
     }
-    
-    }
+}
 
