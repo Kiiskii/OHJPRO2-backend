@@ -4,11 +4,11 @@ const { body } = require('express-validator');
 
 const favoritesController = require('../controllers/favorites')
 
-// const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/:userid', favoritesController.fetchAll);
+router.get('/:userid', auth, favoritesController.fetchAll);
 
 router.post(
     '/',
