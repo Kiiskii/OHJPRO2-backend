@@ -17,15 +17,15 @@ module.exports = class Favorites {
             const { rows } = await db.query('SELECT COUNT(*) FROM favorites WHERE favid = $1', [favorites.favid]);
             const favCount = rows[0].count;
 
-            if (favCount > 0) {
-                throw new Error('favid already exists');
-            } else {
+            if (favCount < 1) {
                 const result = await db.query(
                     'INSERT INTO favorites (userid, favid) VALUES ($1, $2)',
                     [favorites.userid, favorites.favid],
                     console.log('Favorite added to db!')
                 );
                 return result;
+            } else {
+                console.log('Favorite is allready added to db!');
             }
          } catch(err) {
             console.error(err);
