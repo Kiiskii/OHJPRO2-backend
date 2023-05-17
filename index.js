@@ -10,10 +10,11 @@ const errorController = require("./src/controllers/error");
 
 const app = express();
 
-const ports = process.env.//ohjpro2:IaR4cimmA4oKt10MheuAxGZae4x0tL2e@dpg-chibp53hp8u7g2fiq2o0-a/ohjpro2_0o74;
+const ports = process.env.PORT || 3000;
+// const ports = process.env.//ohjpro2:IaR4cimmA4oKt10MheuAxGZae4x0tL2e@dpg-chibp53hp8u7g2fiq2o0-a/ohjpro2_0o74;
 // const ports = process.env.//ohjpro2:IaR4cimmA4oKt10MheuAxGZae4x0tL2e@dpg-chibp53hp8u7g2fiq2o0-a.frankfurt-postgres.render.com/ohjpro2_0o74;
 
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
