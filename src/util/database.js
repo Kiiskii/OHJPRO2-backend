@@ -3,10 +3,11 @@ const { Pool } = require('pg');
 const config = require('../config/config.json');
 
 const pool = new Pool({
-    host: config.host,
     user: config.user,
+    password: config.password,
+    host: config.host,
+    port: config.port,
     database: config.database,
-    password: config.password
 });
 
 pool.query("SELECT 1", (err, results) => {
